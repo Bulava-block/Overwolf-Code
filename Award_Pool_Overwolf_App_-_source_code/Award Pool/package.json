@@ -1,0 +1,42 @@
+{
+  "name": "award-pool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=development --env makeOpk",
+    "dev": "webpack --watch --mode=development",
+    "watch": "webpack --watch --mode=development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@overwolf/overwolf-api-ts": "^1.3.0",
+    "@overwolf/types": "^2.33.0",
+    "@types/node": "^14.14.41",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "html-webpack-plugin": "^5.2.0",
+    "semver": "^7.3.4",
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.2.2",
+    "webpack": "^5.24.1",
+    "webpack-cli": "^4.5.0",
+    "zip-a-folder": "^0.0.12"
+  },
+  "dependencies": {
+    "aws4-axios": "^2.4.6",
+    "axios": "^0.21.1",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "crypto-js": "^4.1.1",
+    "lodash.throttle": "^4.1.1",
+    "querystring": "^0.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.0",
+    "url-loader": "^4.1.1"
+  }
+}

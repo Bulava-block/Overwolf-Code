@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../../css/general.css" />
+  <link rel="stylesheet" href="../../css/header.css" />
+  <link rel="stylesheet" href="../../css/desktop.css" />
+  <link rel="stylesheet" href="../../css/modal.css" />
+  <title>Overwolf Sample App - Desktop page</title>
+</head>
+
+<body class="desktop">
+  <!-- -------------------------------- Header ------------------------------- -->
+
+  <header id="header" class="app-header">
+    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1585781768880x326917572137278140%2Ffavicon-dots.png?w=128&h=&auto=compress&dpr=1&fit=max" />
+    <h1>Award Pool</h1>
+    <div class="window-controls-group">
+      <button class="icon window-control" id="minimizeButton">
+        <svg>
+          <use xlink:href="/img/header_icons.svg#window-control_minimize" />
+        </svg>
+      </button>
+      <button class="icon window-control" id="maximizeButton">
+        <svg>
+          <use xlink:href="/img/header_icons.svg#window-control_maximize" />
+        </svg>
+      </button>
+      <button class="icon window-control window-control-close" id="closeButton">
+        <svg>
+          <use xlink:href="/img/header_icons.svg#window-control_close" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- --------------------------------- Main -------------------------------- -->
+  <main>
+    <div id="loading-overlay">
+      <img src="/img/loading.gif" alt="loading..." />
+    </div>
+    <div class="iframe-panel">
+      <iframe src="https://app.awardpool.com/version-staging/overwolf_login" loading="lazy" id="ap_iframe"></iframe>
+    </div>
+  </main>
+
+  <script>
+    // Standard Google Universal Analytics code
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      },
+        i[r].l = 1 * new Date(); a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+      // Note: https protocol here
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-144253676-3', 'auto');
+
+    // Removes failing protocol check. @see: http://stackoverflow.com/a/22152353/1958200
+    ga('set', 'checkProtocolTask', function () { });
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview', '/desktop.html');
+  </script>
+</body>
+
+</html>

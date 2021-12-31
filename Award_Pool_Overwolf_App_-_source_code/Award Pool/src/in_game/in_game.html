@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../../css/general.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/ingame.css" />
+    <link rel="stylesheet" href="../../css/modal.css" />
+    <title>Overwolf Sample App - In-Game page</title>
+  </head>
+  <body class="in-game">
+    <!-- -------------------------------- Header ------------------------------- -->
+    <header id="header" class="app-header">
+      <img src="../../img/favicon.png" style="width: 18px" />
+      <h1>AwardPool</h1>
+      <h1 style="margin: auto">
+        Show/Hide:
+        <a
+          href="overwolf://settings/games-overlay?hotkey=showhide"
+          id="hotkey"
+          style="font-weight: bold; color: white"
+        ></a>
+      </h1>
+      <div class="window-controls-group">
+        <button class="icon window-control" id="minimizeButton">
+          <svg>
+            <use xlink:href="/img/header_icons.svg#window-control_minimize" />
+          </svg>
+        </button>
+        <button
+          class="icon window-control window-control-close"
+          id="closeButton"
+        >
+          <svg>
+            <use xlink:href="/img/header_icons.svg#window-control_close" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- --------------------------------- Main -------------------------------- -->
+    <main>
+      <div class="game-title">Valorant</div>
+      <div id="root"></div>
+      <div id="challenge-panel" class="challenge-panel">
+        <h5>Daily Challenge</h5>
+        <div class="challenge-item">
+          <p>Death Count</p>
+          <div class="progress-bg">
+            <div class="progress-bar"></div>
+          </div>
+          <div class="progress-value">
+            <label class="earned">0</label>
+            <label class="goal">3</label>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="challenge-panel">
+        <h5>Weekly Challenge</h5>
+        <div class="challenge-item">
+          <p>Play 3+ games with 15+ kills</p>
+          <div class="progress-bg">
+            <div class="progress-bar"></div>
+          </div>
+          <div class="progress-value">
+            <label class="earned">0</label>
+            <label class="goal">3</label>
+          </div>
+        </div>
+        <div class="challenge-item">
+          <p>Play 3+ games with less than 3 deaths</p>
+          <div class="progress-bg">
+            <div class="progress-bar"></div>
+          </div>
+          <div class="progress-value">
+            <label class="earned">0</label>
+            <label class="goal">3</label>
+          </div>
+        </div>
+      </div> -->
+    </main>
+
+    <script>
+      // Standard Google Universal Analytics code
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+        // Note: https protocol here
+      })(
+        window,
+        document,
+        "script",
+        "https://www.google-analytics.com/analytics.js",
+        "ga"
+      );
+
+      ga("create", "UA-144253676-3", "auto");
+
+      // Removes failing protocol check. @see: http://stackoverflow.com/a/22152353/1958200
+      ga("set", "checkProtocolTask", function () {});
+      ga("require", "displayfeatures");
+      ga("send", "pageview", "/in_game.html");
+    </script>
+  </body>
+</html>
