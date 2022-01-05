@@ -146,12 +146,15 @@ class BackgroundController {
   }
 
   private onInfoUpdates(data) {
+    
     console.info("onInfoUpdates", data);
     onInfoUpdates(data);
   }
 
   private onNewEvents(data) {
-    console.info("onNewEvents", data);
+    
+    
+    console.info("onNewEvents",  data);
     onNewEvents(data);
   }
 

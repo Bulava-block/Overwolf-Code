@@ -59,9 +59,10 @@ class Storage {
               game_id: this.data.gameId,
               action_id: "",
               eventname: "game_ended",
-              eventdata: JSON.stringify({
-                events,
-              }),
+              eventdata: events,
+              // eventdata: JSON.stringify({  //stringify
+              //   events,
+              // }),
             },
             this.data.token
           );

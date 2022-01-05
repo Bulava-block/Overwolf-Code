@@ -8,6 +8,7 @@ const gameIds = [
   10826, // Rainbow Six Siege
   7764, // CSGO
   5426, // League Of Legends
+  10624,
   //5426,   // Team Fight Tactics
   // NBA2k
   // Roblox
@@ -101,6 +102,18 @@ const interestingFeatures = {
     "kill",
     "death",
   ],
+
+  10624: [
+    // Heroes of the storm
+    "me",
+    "game_info",
+    "match_info",
+    "gep_internal",
+    "kill",
+    "roster",
+    "death",
+  ],
+
   10826: [
     // Rainbow Six Siege
     "game_info",
