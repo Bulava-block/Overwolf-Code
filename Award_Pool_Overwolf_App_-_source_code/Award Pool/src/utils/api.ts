@@ -26,6 +26,7 @@ export const postEventList = async (data, token) => {
       data
     );
     console.log(response);
+
     if (response.data.status === "success") {
       return true;
     }
@@ -40,14 +41,14 @@ export const getChallangesList = async (token, gameId) => {
     const response = await awsClient.get(
       `https://sandbox.overwolf.awardpool.co/v1/challenges/${token}/${gameId}`
     );
-    console.log(response);
-    if (response.data.status === "success") {
-      return true;
+    console.log("What is this?", response);
+    if (response.data.status === "success" && response.data.data != null) {
+      return response.data.data;
     }
   } catch (e) {
     console.log(e);
   }
-  return false;
+  return [];
 };
 
 export const getToken = async (email, password): Promise<string> => {
