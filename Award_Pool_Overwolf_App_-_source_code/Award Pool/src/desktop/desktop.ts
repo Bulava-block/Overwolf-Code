@@ -48,8 +48,6 @@ class Desktop extends AppWindow {
     const jsonText = bytes.toString(CryptoJS.enc.Utf8);
     console.log("Received message from iframe:", data, jsonText);
     console.log("Parsed json:", JSON.parse(jsonText));
-    //alert('OW-App Received message from iframe: ' + data);
-    //alert('OW-App Decrypted json: ' + jsonText);
     const jsonData = JSON.parse(jsonText);
 
     if (!jsonData.state) {
@@ -61,7 +59,6 @@ class Desktop extends AppWindow {
       if (token) {
         this.token = token;
         this.user_id = jsonData.UID;
-        //alert("OW-App getToken: " + token);
         localStorage.setItem("user_detail", data);
         localStorage.setItem("token", token);
         localStorage.setItem("user_id", jsonData.UID);

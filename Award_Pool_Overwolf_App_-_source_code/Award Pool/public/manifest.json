@@ -55,9 +55,13 @@
     },
     "game_targeting": {
       "type": "dedicated",
-      "game_ids": [21216, 21626, 10798, 7314, 10624, 21640, 10826, 7764, 5426, 8032]
+      "game_ids": [
+        21216, 21626, 10798, 7314, 10624, 21640, 10826, 7764, 5426, 8032
+      ]
     },
-    "game_events": [21216, 21626, 10798, 7314, 10624, 21640, 10826, 7764, 5426, 8032],
+    "game_events": [
+      21216, 21626, 10798, 7314, 10624, 21640, 10826, 7764, 5426, 8032
+    ],
     "launch_events": [
       {
         "event": "GameLaunch",
@@ -92,7 +96,7 @@
         "https://www.facebook.com",
         "https://www.reddit.com",
         "https://app.awardpool.com",
-        "https://sandbox.api.awardpool.co"
+        "https://sandbox.overwolf.awardpool.co"
       ]
     },
     "force_browser": "user",

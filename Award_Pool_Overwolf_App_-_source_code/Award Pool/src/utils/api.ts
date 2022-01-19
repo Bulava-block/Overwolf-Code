@@ -21,10 +21,24 @@ awsClient.interceptors.request.use(interceptor);
 export const postEventList = async (data, token) => {
   try {
     console.log(data);
-    //alert('OW-App Send event list: ' + JSON.stringify(data));
     const response = await awsClient.post(
-      `https://sandbox.api.awardpool.co/overwolf`,
+      `https://sandbox.overwolf.awardpool.co/v1/events`,
       data
+    );
+    console.log(response);
+    if (response.data.status === "success") {
+      return true;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
+};
+
+export const getChallangesList = async (token, gameId) => {
+  try {
+    const response = await awsClient.get(
+      `https://sandbox.overwolf.awardpool.co/v1/challenges/${token}/${gameId}`
     );
     console.log(response);
     if (response.data.status === "success") {
@@ -56,3 +70,5 @@ export const getToken = async (email, password): Promise<string> => {
     return "";
   }
 };
+
+//https://sandbox.overwolf.awardpool.co/v1/challenges/637094340578x966760525515472300/10624

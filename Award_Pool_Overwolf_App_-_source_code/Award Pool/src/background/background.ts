@@ -70,7 +70,7 @@ class BackgroundController {
 
     //Set user id and token here
     storage.setData("userId", "1637094340578x966760525515472300");
-    storage.setData("token", "1640281678688x196513367961636640");
+    storage.setData("token", "1642619456159x236429256937501500");
   }
 
   // Identify whether the RunningGameInfo object we have references a supported game
@@ -146,15 +146,12 @@ class BackgroundController {
   }
 
   private onInfoUpdates(data) {
-    
     console.info("onInfoUpdates", data);
     onInfoUpdates(data);
   }
 
   private onNewEvents(data) {
-    
-    
-    console.info("onNewEvents",  data);
+    console.info("onNewEvents", data);
     onNewEvents(data);
   }
 
