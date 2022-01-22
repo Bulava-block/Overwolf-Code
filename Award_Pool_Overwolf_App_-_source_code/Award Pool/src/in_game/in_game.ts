@@ -3,7 +3,6 @@ import { OWGames, OWGamesEvents, OWHotkeys } from "@overwolf/overwolf-api-ts";
 import { interestingFeatures, hotkeys, windowNames, gameIds } from "../consts";
 import WindowState = overwolf.windows.WindowStateEx;
 import "./app";
-import "./challenge_list";
 // The window displayed in-game while a Fortnite game is running.
 // It listens to all info events and to the game events listed in the consts.ts file
 // and writes them to the relevant log using <pre> tags.

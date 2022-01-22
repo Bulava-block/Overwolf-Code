@@ -1,20 +1,20 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { render } from "react-dom";
 import emitter from "./emitter";
-import { challenges } from "./challenge_list";
 import { getChallangesList } from "../utils/api";
 
 const App = () => {
-  const [challengeList, setChallengeList] = useState(
-    challenges.getChallengeList()
-  );
+  const [challengeList, setChallengeList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const challengeList = getChallangesList(
+      const challengesList = await getChallangesList(
         "637094340578x966760525515472300",
         "10624"
       );
+      if (challengesList.length > 0) {
+        setChallengeList(challengesList);
+      }
     };
 
     fetchData();
