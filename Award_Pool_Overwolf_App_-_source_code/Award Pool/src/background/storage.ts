@@ -8,8 +8,8 @@ class Storage {
   private events: Array<any>;
   private throttledSave: () => void;
   private data: {
-    token: undefined | number;
-    userId: undefined | number;
+    token: undefined | string;
+    userId: undefined | string;
     gameId: undefined | number;
   };
 
@@ -25,6 +25,13 @@ class Storage {
       token: undefined,
       gameId: undefined,
     };
+    this.listenToStorageSync();
+  }
+  private handleStorageSync() {
+    eventEmitter.emit("storage-sync", this.data);
+  }
+  private listenToStorageSync() {
+    eventEmitter.on("init-storage-sync", this.handleStorageSync.bind(this));
   }
 
   public addEvent(event) {
@@ -53,20 +60,25 @@ class Storage {
         if (this.data.gameId != null) {
           console.log("Saving events: ", events);
 
-          await postEventList(
+          const postEventListResponse = await postEventList(
             {
-              
               user_id: this.data.userId,
               game_id: this.data.gameId,
               action_id: "",
-              eventname: Math.floor(Date.now() / 1000),//"game_ended",
-              eventdata:events,
-              // eventdata: JSON.stringify({  //stringify
-              //   events,
-              // }),
+              eventname: Math.floor(Date.now() / 1000), //"game_ended",
+              eventdata: events,
             },
             this.data.token
           );
+          if (
+            postEventListResponse.success &&
+            postEventListResponse.stas != null
+          ) {
+            eventEmitter.emit("challenges-updatee", [
+              postEventListResponse.stas,
+            ]);
+          }
+
           storage.clearEvents();
         } else {
           console.log("Game id is missing.");
@@ -80,9 +92,10 @@ class Storage {
   }
 
   public setData(key: string, value: any) {
-    console.log("Key", key);
-    console.log("value", value);
     this.data[key] = value;
+    eventEmitter.emit("storage-update", {
+      [key]: value,
+    });
   }
 }
 

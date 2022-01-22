@@ -20,20 +20,28 @@ awsClient.interceptors.request.use(interceptor);
 
 export const postEventList = async (data, token) => {
   try {
-    console.log(data);
     const response = await awsClient.post(
       `https://sandbox.overwolf.awardpool.co/v1/events`,
       data
     );
-    console.log(response, "Stas");
-
-    if (response.data.status === "success") {
-      return true;
+    if (response.data.status === 200 && response.data.ok === true) {
+      if (response.data.stas != null) {
+        return {
+          success: true,
+          stas: response.data.stas,
+        };
+      } else {
+        return {
+          success: true,
+        };
+      }
     }
   } catch (e) {
     console.log(e);
   }
-  return false;
+  return {
+    success: false,
+  };
 };
 
 export const getChallangesList = async (token, gameId) => {
@@ -41,8 +49,12 @@ export const getChallangesList = async (token, gameId) => {
     const response = await awsClient.get(
       `https://sandbox.overwolf.awardpool.co/v1/challenges/${token}/${gameId}`
     );
-    console.log("What is this?", response);
-    if (response.data.status === "success" && response.data.data != null) {
+    if (
+      response.status === 200 &&
+      response.data.data != null &&
+      response.data.ok === true &&
+      Array.isArray(response.data.data)
+    ) {
       return response.data.data;
     }
   } catch (e) {

@@ -3,6 +3,10 @@ import { OWGames, OWGamesEvents, OWHotkeys } from "@overwolf/overwolf-api-ts";
 import { interestingFeatures, hotkeys, windowNames, gameIds } from "../consts";
 import WindowState = overwolf.windows.WindowStateEx;
 import "./app";
+import { getChallangesList } from "../utils/api";
+import emitter from "./emitter";
+import storage from "./storage";
+console.log("?X", storage);
 // The window displayed in-game while a Fortnite game is running.
 // It listens to all info events and to the game events listed in the consts.ts file
 // and writes them to the relevant log using <pre> tags.
@@ -38,7 +42,21 @@ class InGame extends AppWindow {
     return this._instance;
   }
 
-  public async run() {}
+  public async run() {
+    const { token, gameId } = await storage.waitForTokenAndGameId();
+    const challengesList = await getChallangesList(token, gameId);
+
+    if (challengesList.length > 0) {
+      emitter.emit(
+        "challenges-update",
+        challengesList.map(({ Label, ...rest }) => ({
+          ...rest,
+          label: Label,
+          incomplete: 0,
+        }))
+      );
+    }
+  }
 
   // Displays the toggle minimize/restore hotkey in the window header
   private async setToggleHotkeyText() {

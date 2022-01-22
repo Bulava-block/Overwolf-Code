@@ -1,31 +1,32 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { render } from "react-dom";
 import emitter from "./emitter";
-import { getChallangesList } from "../utils/api";
 
 const App = () => {
   const [challengeList, setChallengeList] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const challengesList = await getChallangesList(
-        "637094340578x966760525515472300",
-        "10624"
-      );
-      if (challengesList.length > 0) {
-        setChallengeList(challengesList);
+    function updateChallangeList(list) {
+      if (challengeList.length > 0 && list.length > 0) {
+        const newChallenges = [...list, challengeList];
+        const ids = [];
+        setChallengeList(
+          newChallenges.reduce((accumulator, challenge) => {
+            if (ids.includes(challenge.id) === false) {
+              ids.push(challenge.id);
+              accumulator.push(challenge);
+            }
+            return accumulator;
+          }, [])
+        );
+      } else {
+        setChallengeList(list);
       }
-    };
-
-    fetchData();
-
-    /* function updateChallangeList(list) {
-      setChallengeList(list);
-    }*/
-    //emitter.on("challenges-update", updateChallangeList);
-    //return () =>
-    //emitter.removeListener("challenges-update", updateChallangeList);
-  }, [setChallengeList]);
+    }
+    emitter.on("challenges-update", updateChallangeList);
+    return () =>
+      emitter.removeListener("challenges-update", updateChallangeList);
+  }, [setChallengeList, challengeList]);
 
   return (
     <Fragment>
