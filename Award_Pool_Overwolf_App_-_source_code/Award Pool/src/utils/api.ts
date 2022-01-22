@@ -49,6 +49,7 @@ export const getChallangesList = async (token, gameId) => {
     const response = await awsClient.get(
       `https://sandbox.overwolf.awardpool.co/v1/challenges/${token}/${gameId}`
     );
+    console.log("r", response);
     if (
       response.status === 200 &&
       response.data.data != null &&

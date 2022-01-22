@@ -14,7 +14,7 @@ EventEmitter.prototype.removeListener = function (event, listener) {
   var idx;
 
   if (typeof this.events[event] === "object") {
-    idx = indexOf(this.events[event], listener);
+    idx = this.events[event].indexOf(listener);
 
     if (idx > -1) {
       this.events[event].splice(idx, 1);

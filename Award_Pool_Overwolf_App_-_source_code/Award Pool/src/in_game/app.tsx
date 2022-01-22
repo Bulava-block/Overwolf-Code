@@ -20,6 +20,7 @@ const App = () => {
           }, [])
         );
       } else {
+        console.log("xx", list);
         setChallengeList(list);
       }
     }
