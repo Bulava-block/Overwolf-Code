@@ -55,11 +55,12 @@ class Storage {
 
           await postEventList(
             {
+              
               user_id: this.data.userId,
               game_id: this.data.gameId,
               action_id: "",
-              eventname: "game_ended",
-              eventdata: events,
+              eventname: Math.floor(Date.now() / 1000),//"game_ended",
+              eventdata:events,
               // eventdata: JSON.stringify({  //stringify
               //   events,
               // }),

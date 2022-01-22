@@ -11,8 +11,8 @@ const interceptor = aws4Interceptor(
     signQuery: true,
   },
   {
-    accessKeyId: "AKIAYPDA4V42OZHYQBZS",
-    secretAccessKey: "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",
+    accessKeyId: "AKIAYPDA4V42B7XSN64B",
+    secretAccessKey: "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",
   }
 );
 
@@ -25,7 +25,7 @@ export const postEventList = async (data, token) => {
       `https://sandbox.overwolf.awardpool.co/v1/events`,
       data
     );
-    console.log(response);
+    console.log(response, "Stas");
 
     if (response.data.status === "success") {
       return true;
