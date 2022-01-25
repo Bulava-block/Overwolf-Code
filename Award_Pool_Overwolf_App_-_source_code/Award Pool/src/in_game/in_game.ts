@@ -45,16 +45,8 @@ class InGame extends AppWindow {
   public async run() {
     const { token, gameId } = await storage.waitForTokenAndGameId();
     const challengesList = await getChallangesList(token, "10624");
-    console.log("challengesList", challengesList);
     if (challengesList.length > 0) {
-      emitter.emit(
-        "challenges-update",
-        challengesList.map(({ Label, ...rest }) => ({
-          ...rest,
-          label: Label,
-          incomplete: 0,
-        }))
-      );
+      emitter.emit("challenges-update", challengesList);
     }
   }
 

@@ -71,10 +71,11 @@ class Storage {
             this.data.token
           );
           if (
-            postEventListResponse.success &&
+            postEventListResponse.success === true &&
             postEventListResponse.stas != null
           ) {
-            eventEmitter.emit("challenges-updatee", [
+            console.log("Does this happen?");
+            eventEmitter.emit("challenges-update", [
               postEventListResponse.stas,
             ]);
           }

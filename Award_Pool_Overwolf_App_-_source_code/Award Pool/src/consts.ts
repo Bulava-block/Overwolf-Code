@@ -15,6 +15,20 @@ const gameIds = [
   8032, // MineCraft
 ];
 
+const getGameNameById = (gameId: undefined | number) => {
+  if (gameId != null) {
+    switch (gameId) {
+      case 21216:
+        return "Fortnite";
+      case 21640:
+        return "Valorant";
+      case 10826:
+        return "Rainbow Six Siege";
+    }
+  }
+  return "";
+};
+
 const interestingFeatures = {
   21216: [
     // Fortnite
@@ -201,4 +215,4 @@ const hotkeys = {
   toggle: "showhide",
 };
 
-export { gameIds, interestingFeatures, windowNames, hotkeys };
+export { gameIds, interestingFeatures, windowNames, hotkeys, getGameNameById };
