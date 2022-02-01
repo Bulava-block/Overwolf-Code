@@ -10,8 +10,7 @@
     "dock_button_title": "Award Pool",
     "icon": "icons/iconMouseOver.png",
     "icon_gray": "icons/iconMouseNormal.png",
-    "launcher_icon": "icons/desktopIcon.ico",
-    "window_icon": "icons/taskbarIcon.png"
+    "launcher_icon": "icons/launcher_icon.ico"
   },
   "permissions": ["Hotkeys", "GameInfo"],
   "data": {
