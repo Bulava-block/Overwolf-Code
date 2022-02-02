@@ -26,7 +26,7 @@ export const postEventList = async (data, token) => {
     );
     if (response.status === 200 && response.data.ok === true) {
       if (response.data.stas != null) {
-        console.log("Test 3");
+        console.log("Test 3", response.data.stas );
         return {
           success: true,
           stas: response.data.stas,

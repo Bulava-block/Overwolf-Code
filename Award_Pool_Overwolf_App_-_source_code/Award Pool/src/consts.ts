@@ -24,6 +24,8 @@ const getGameNameById = (gameId: undefined | number) => {
         return "Valorant";
       case 10826:
         return "Rainbow Six Siege";
+        case 10624:
+        return "Heroes Of The Storm";
     }
   }
   return "";
