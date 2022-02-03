@@ -48,7 +48,7 @@ export const postEventList = async (data, token) => {
 export const getChallangesList = async (token, gameId) => {
   try {
     const response = await awsClient.get(
-      `https://sandbox.overwolf.awardpool.co/v1/challenges/${token}/${gameId}/current`
+      `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${token}/current`
     );
     console.log("r", response);
     if (

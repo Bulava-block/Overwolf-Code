@@ -70,7 +70,7 @@ class BackgroundController {
 
     //Set user id and token here
     storage.setData("userId", "1637094340578x966760525515472300");
-    storage.setData("token", "637094340578x966760525515472300");
+    storage.setData("token", "1637094340578x966760525515472300");
   }
 
   // Identify whether the RunningGameInfo object we have references a supported game
