@@ -1,4 +1,4 @@
-import storage from "./storage";
+import storage from "./background-storage";
 
 //Any game, any info update is handled here
 const onInfoUpdates = (data) => {

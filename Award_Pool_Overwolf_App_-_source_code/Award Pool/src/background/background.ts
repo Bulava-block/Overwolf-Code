@@ -10,8 +10,7 @@ import {
   OWWindow,
 } from "@overwolf/overwolf-api-ts";
 import RunningGameInfo = overwolf.games.RunningGameInfo;
-import storage from "./storage";
-import eventEmitter from "../utils/events.js";
+import eventEmitter from "../utils/events";
 import onInfoUpdates from "./infoUpdates";
 import onNewEvents from "./newEvents";
 import BufferC from "buffer";
@@ -67,10 +66,6 @@ class BackgroundController {
     overwolf.extensions.onAppLaunchTriggered.addListener((e) =>
       this.onAppLaunchTriggered(e)
     );
-
-    //Set user id and token here
-    storage.setData("userId", "1637094340578x966760525515472300");
-    storage.setData("token", "1637094340578x966760525515472300");
   }
 
   // Identify whether the RunningGameInfo object we have references a supported game
@@ -89,7 +84,7 @@ class BackgroundController {
     const info = await OWGames.getRunningGameInfo();
     if (info != null && info.classId != null) {
       console.info("Saving game id", info.classId);
-      storage.setData("gameId", info.classId);
+      eventEmitter.emit("storage-update-data", "gameId", info.classId);
       if (this._gameEventsListener != null) {
         this._gameEventsListener.stop();
       }
