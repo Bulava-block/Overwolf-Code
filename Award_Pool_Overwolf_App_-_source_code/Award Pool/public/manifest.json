@@ -2,9 +2,9 @@
   "manifest_version": 1,
   "type": "WebApp",
   "meta": {
-    "name": "Award Pool",
-    "author": "Award Pool",
-    "version": "1.0.0",
+    "name": "Awardpool",
+    "author": "Awardpool",
+    "version": "1.0.1",
     "minimum-overwolf-version": "0.160.0",
     "description": "An example app for developers new to Overwolf",
     "dock_button_title": "Award Pool",
