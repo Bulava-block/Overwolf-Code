@@ -31,13 +31,13 @@ const App = () => {
   }, [setChallengeList, challengeList]);
 
   useEffect(() => {
-    function updateGame(data) {
-      if (data.gameId != null) {
-        setGameId(data.gameId);
+    function updateGame(key, data) {
+      if (key === "gameId") {
+        setGameId(data);
       }
     }
-    emitter.on("storage-update", updateGame);
-    return () => emitter.removeListener("storage-update", updateGame);
+    emitter.on("storage-update-data", updateGame);
+    return () => emitter.removeListener("storage-update-data", updateGame);
   }, [setGameId]);
 
   const gameName = useMemo(() => getGameNameById(gameId), [gameId]);

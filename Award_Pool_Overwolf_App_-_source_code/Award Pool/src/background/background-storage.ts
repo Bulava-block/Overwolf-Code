@@ -1,41 +1,25 @@
 import { postEventList } from "../utils/api";
-import eventEmitter from "../utils/events.js";
+import ee from "../utils/events";
+import { MasterStorage } from "./storage-classes";
 
 const throttle = require("lodash.throttle");
 
-class Storage {
+class BackgroundStorage extends MasterStorage {
   private saveInterval: number;
   private events: Array<any>;
   private throttledSave: () => void;
-  private data: {
-    token: undefined | string;
-    userId: undefined | string;
-    gameId: undefined | number;
-  };
 
-  constructor() {
+  constructor(eventEmitter) {
+    super(eventEmitter);
     this.saveInterval = 10000;
     this.events = [];
     this.throttledSave = throttle(this.save.bind(this), this.saveInterval, {
       leading: false,
       trailing: true,
     });
-    this.data = {
-      userId: undefined,
-      token: undefined,
-      gameId: undefined,
-    };
-    this.listenToStorageSync();
-  }
-  private handleStorageSync() {
-    eventEmitter.emit("storage-sync", this.data);
-  }
-  private listenToStorageSync() {
-    eventEmitter.on("init-storage-sync", this.handleStorageSync.bind(this));
   }
 
   public addEvent(event) {
-    eventEmitter.emit("storage-add", event);
     this.events.push(event);
     this.throttledSave();
   }
@@ -54,7 +38,7 @@ class Storage {
   }
 
   private async save() {
-    const events = storage.get();
+    const events = this.get();
     if (events.length > 0) {
       if (this.data.token != null && this.data.userId != null) {
         if (this.data.gameId != null) {
@@ -75,7 +59,7 @@ class Storage {
             postEventListResponse.stas != null
           ) {
             console.log("Does this happen?");
-            eventEmitter.emit("challenges-update", [
+            this.eventEmitter.emit("challenges-update", [
               postEventListResponse.stas,
             ]);
           }
@@ -91,15 +75,8 @@ class Storage {
       console.log("No events available for save.");
     }
   }
-
-  public setData(key: string, value: any) {
-    this.data[key] = value;
-    eventEmitter.emit("storage-update", {
-      [key]: value,
-    });
-  }
 }
 
-const storage = new Storage();
+const storage = new BackgroundStorage(ee);
 
 export default storage;

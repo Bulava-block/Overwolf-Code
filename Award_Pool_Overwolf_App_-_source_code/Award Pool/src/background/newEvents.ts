@@ -1,4 +1,4 @@
-import storage from "./storage";
+import storage from "./background-storage";
 
 //Any game, any new events update is handled here
 const onNewEvents = (data) => {
