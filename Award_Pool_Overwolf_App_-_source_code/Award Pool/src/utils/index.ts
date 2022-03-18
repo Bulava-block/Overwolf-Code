@@ -17,6 +17,7 @@ const getTokenByEncryptedMessage = async (message) => {
   const bytes = CryptoJS.AES.decrypt(message, secret);
   const jsonText = bytes.toString(CryptoJS.enc.Utf8);
   const jsonData = JSON.parse(jsonText);
+  console.log(jsonData);
   if (
     jsonData != null &&
     jsonData.state != null &&
@@ -24,6 +25,7 @@ const getTokenByEncryptedMessage = async (message) => {
   ) {
     const token = await getToken(jsonData.email, jsonData.password);
     if (token != null) {
+      console.log("TOKEN", token);
       return { token, userId: jsonData.UID, email: jsonData.email };
     }
   }
