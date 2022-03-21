@@ -14,7 +14,7 @@ class Desktop extends AppWindow {
 
     (window as any).global = window;
     global.Buffer = global.Buffer || require("buffer").Buffer;
-
+      console.log("whatever");
     window.addEventListener("message", (message) => {
       console.log("Incoming message", message);
       if (message.origin !== "https://app.awardpool.com") {

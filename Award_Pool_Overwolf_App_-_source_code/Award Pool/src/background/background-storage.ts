@@ -11,7 +11,7 @@ class BackgroundStorage extends MasterStorage {
 
   constructor(eventEmitter) {
     super(eventEmitter);
-    this.saveInterval = 10000;
+    this.saveInterval = 3000;
     this.events = [];
     this.throttledSave = throttle(this.save.bind(this), this.saveInterval, {
       leading: false,

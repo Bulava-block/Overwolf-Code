@@ -46,7 +46,7 @@ const App = () => {
     <Fragment>
       <div className="game-title">{gameName}</div>
       <div id="challenge-panel" className="challenge-panel">
-        <h5>Daily Challenge</h5>
+        <h5>Current Challenge</h5>
         {challengeList.map(
           ({ label, complete, incomplete, state, progress }, i) => (
             <div key={`ch-${i}`} className="challenge-item">
