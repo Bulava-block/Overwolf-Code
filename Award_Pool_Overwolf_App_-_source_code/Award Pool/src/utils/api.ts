@@ -18,7 +18,7 @@ const interceptor = aws4Interceptor(
 
 awsClient.interceptors.request.use(interceptor);
 
-export const postEventList = async (data, token) => {
+export const postEventList = async (data) => {
   try {
     const response = await awsClient.post(
       `https://sandbox.overwolf.awardpool.co/v1/events`,
@@ -45,10 +45,10 @@ export const postEventList = async (data, token) => {
   };
 };
 
-export const getChallangesList = async (token, gameId) => {
+export const getChallangesList = async (userId, gameId) => {
   try {
     const response = await awsClient.get(
-      `https://sandbox.overwolf.awardpool.co/v1/challenges/${token}/${gameId}/current`
+      `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
     );
     console.log("getChallangesList response", response);
     if (
@@ -63,26 +63,3 @@ export const getChallangesList = async (token, gameId) => {
   }
   return [];
 };
-
-export const getToken = async (email, password): Promise<string> => {
-  try {
-    const response = await axios.post(
-      `https://app.awardpool.com/version-staging/api/1.1/wf/login`,
-      querystring.stringify({ email, password }),
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
-    console.log(response);
-    if (response.data.status === "success") {
-      return response.data.response.token;
-    }
-  } catch (e) {
-    console.log(e);
-    return "";
-  }
-};
-
-//https://sandbox.overwolf.awardpool.co/v1/challenges/637094340578x966760525515472300/10624

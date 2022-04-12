@@ -40,20 +40,17 @@ class BackgroundStorage extends MasterStorage {
   private async save() {
     const events = this.get();
     if (events.length > 0) {
-      if (this.data.token != null && this.data.userId != null) {
+      if (this.data.userId != null) {
         if (this.data.gameId != null) {
           console.log("Saving events: ", events);
 
-          const postEventListResponse = await postEventList(
-            {
-              user_id: this.data.userId,
-              game_id: this.data.gameId,
-              action_id: "",
-              eventname: Math.floor(Date.now() / 1000), //"game_ended",
-              eventdata: events,
-            },
-            this.data.token
-          );
+          const postEventListResponse = await postEventList({
+            user_id: this.data.userId,
+            game_id: this.data.gameId,
+            action_id: "",
+            eventname: Math.floor(Date.now() / 1000), //"game_ended",
+            eventdata: events,
+          });
           if (
             postEventListResponse.success === true &&
             postEventListResponse.stas != null
@@ -69,7 +66,7 @@ class BackgroundStorage extends MasterStorage {
           console.log("Game id is missing.");
         }
       } else {
-        console.log("Token or userId is missing.");
+        console.log("UserId is missing.");
       }
     } else {
       console.log("No events available for save.");

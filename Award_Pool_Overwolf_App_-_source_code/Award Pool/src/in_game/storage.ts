@@ -10,16 +10,16 @@ class Storage extends SlaveStorage {
     return this.data;
   }
 
-  public waitForTokenAndGameId(): Promise<Data> {
+  public waitForUserIdAndGameId(): Promise<Data> {
     return new Promise((resolve) => {
-      console.log("waitForTokenAndGameId", this.getData());
-      if (this.data.gameId != null && this.data.token != null) {
+      console.log(" waitForUserIdAndGameId", this.getData());
+      if (this.data.gameId != null && this.data.userId != null) {
         resolve(this.data);
         return;
       }
       const intv = setInterval(() => {
         console.log("setInterval", this.data);
-        if (this.data.gameId != null && this.data.token != null) {
+        if (this.data.gameId != null && this.data.userId != null) {
           resolve(this.data);
           clearInterval(intv);
           return;

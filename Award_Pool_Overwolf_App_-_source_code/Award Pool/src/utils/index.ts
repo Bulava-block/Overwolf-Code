@@ -1,5 +1,4 @@
 import CryptoJS from "crypto-js";
-import { getToken } from "./api";
 
 function deleteAllCookies() {
   var cookies = document.cookie.split(";");
@@ -12,24 +11,20 @@ function deleteAllCookies() {
   }
 }
 
-const getTokenByEncryptedMessage = async (message) => {
-  const secret = "UFhQ9WH2rvKdgHXAxYL5";
-  const bytes = CryptoJS.AES.decrypt(message, secret);
-  const jsonText = bytes.toString(CryptoJS.enc.Utf8);
-  const jsonData = JSON.parse(jsonText);
-  console.log(jsonData);
-  if (
-    jsonData != null &&
-    jsonData.state != null &&
-    jsonData.state === "login"
-  ) {
-    const token = await getToken(jsonData.email, jsonData.password);
-    if (token != null) {
-      console.log("TOKEN", token);
-      return { token, userId: jsonData.UID, email: jsonData.email };
+const getCredentialsByEncryptedMessage = async (message) => {
+  let userId = undefined;
+  try {
+    const messageString = atob(message);
+    const parsedMessage = JSON.parse(messageString);
+    if (parsedMessage != null && parsedMessage.UID != null) {
+      userId = parsedMessage.UID;
     }
+  } catch (error) {
+    console.log("Error decoding message: ", error);
   }
-  return {};
+  return {
+    userId,
+  };
 };
 
-export { deleteAllCookies, getTokenByEncryptedMessage };
+export { deleteAllCookies, getCredentialsByEncryptedMessage };

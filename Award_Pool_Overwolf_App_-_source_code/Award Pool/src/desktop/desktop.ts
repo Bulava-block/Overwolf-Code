@@ -1,7 +1,7 @@
 import { AppWindow } from "../AppWindow";
 import { windowNames } from "../consts";
 import eventEmitter from "../in_game/emitter";
-import { getTokenByEncryptedMessage } from "../utils/index";
+import { getCredentialsByEncryptedMessage } from "../utils/index";
 
 // The desktop window is the window displayed while Fortnite is not running.
 // In our case, our desktop window has no logic - it only displays static data.
@@ -14,7 +14,6 @@ class Desktop extends AppWindow {
 
     (window as any).global = window;
     global.Buffer = global.Buffer || require("buffer").Buffer;
-      console.log("whatever");
     window.addEventListener("message", (message) => {
       console.log("Incoming message", message);
       if (message.origin !== "https://app.awardpool.com") {
@@ -36,11 +35,11 @@ class Desktop extends AppWindow {
   }
 
   private async processPostMessage(message: string) {
-    const { token, userId } = await getTokenByEncryptedMessage(message);
-    if (token != null) {
+    const { userId } = await getCredentialsByEncryptedMessage(message);
+    console.log("userId", userId);
+    if (userId != null) {
       console.log("Message from backend - login", message);
       eventEmitter.emit("storage-update-data", "message", message);
-      eventEmitter.emit("storage-update-data", "token", token);
       eventEmitter.emit("storage-update-data", "userId", userId);
     }
   }

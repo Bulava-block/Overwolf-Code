@@ -1,4 +1,4 @@
-import { getTokenByEncryptedMessage } from "../utils/index";
+import { getCredentialsByEncryptedMessage } from "../utils/index";
 
 /*
 Main events:
@@ -8,7 +8,6 @@ storage-trigger-sync-data - triggers storage-sync-data
 storage-sync-data - sends the current master data to whoever is subscribed
 */
 type Data = {
-  token: undefined | string;
   userId: undefined | string;
   gameId: undefined | number;
   message: undefined | number;
@@ -21,7 +20,6 @@ class Storage {
   constructor(eventEmitter) {
     this.data = {
       userId: undefined,
-      token: undefined,
       gameId: undefined,
       message: undefined,
     };
@@ -44,9 +42,9 @@ class Storage {
 class MasterStorage extends Storage {
   constructor(eventEmitter) {
     super(eventEmitter);
-    this.restoreTokenAndUserId();
+    this.restoreCredentials();
     this.listenToTriggerSyncData();
-    this.listenToUpdateDataForLS();
+    //this.listenToUpdateDataForLS();
   }
 
   private syncData = () => {
@@ -57,22 +55,21 @@ class MasterStorage extends Storage {
     console.log(`[MasterStorage] FN: listenToTriggerSyncData.`);
     this.eventEmitter.on("storage-trigger-sync-data", this.syncData);
   }
-  private async restoreTokenAndUserId() {
+  private async restoreCredentials() {
     const lsStorageData = localStorage.getItem("storage");
-    console.log(`[MasterStorage] FN: restoreTokenAndUserId.`);
+    console.log(`[MasterStorage] FN: restoreCredentials.`);
     if (lsStorageData != null) {
       const dataParsed = JSON.parse(lsStorageData);
       if (dataParsed.message != null) {
-        console.log(
-          `[MasterStorage] FN: restoreTokenAndUserId message exists.`
-        );
+        console.log(`[MasterStorage] FN: restoreCredentials message exists.`);
 
-        const { token, userId } = await getTokenByEncryptedMessage(
+        const { userId } = await getCredentialsByEncryptedMessage(
           dataParsed.message
         );
-        if (token != null) {
+        console.log("dataParsed userId", userId);
+        if (userId != null) {
           console.log(
-            `[MasterStorage] FN: restoreTokenAndUserId token restoration.`
+            `[MasterStorage] FN: restoreCredentials userId restoration.`
           );
           //Necessary, because I have to write it to memory
           this.eventEmitter.emit(
@@ -80,7 +77,6 @@ class MasterStorage extends Storage {
             "message",
             dataParsed.message
           );
-          this.eventEmitter.emit("storage-update-data", "token", token);
           this.eventEmitter.emit("storage-update-data", "userId", userId);
         }
       }
@@ -101,10 +97,10 @@ class MasterStorage extends Storage {
     }
   };
 
-  private listenToUpdateDataForLS() {
+  /*private listenToUpdateDataForLS() {
     console.log(`[MasterStorage] FN: listenToUpdateDataForLS.`);
     this.eventEmitter.on("storage-update-data", this.saveMessageToLocalStorage);
-  }
+  }*/
 }
 
 class SlaveStorage extends Storage {

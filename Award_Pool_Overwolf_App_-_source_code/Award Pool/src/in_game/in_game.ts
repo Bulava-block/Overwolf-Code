@@ -36,8 +36,8 @@ class InGame extends AppWindow {
   }
 
   public async run() {
-    const { token, gameId } = await storage.waitForTokenAndGameId();
-    const challengesList = await getChallangesList(token, "10624");
+    const { userId, gameId } = await storage.waitForUserIdAndGameId();
+    const challengesList = await getChallangesList(userId, gameId);
     if (challengesList.length > 0) {
       eventEmitter.emit("challenges-update", challengesList);
     }
