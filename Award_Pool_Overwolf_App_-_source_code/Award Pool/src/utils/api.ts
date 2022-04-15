@@ -25,9 +25,17 @@ export const postEventList = async (data) => {
       data
     );
     if (response.status === 200 && response.data.ok === true) {
-      return {
-        success: true,
-      };
+      if (response.data.stas != null) {
+        console.log("Test 3");
+        return {
+          success: true,
+          stas: response.data.stas,
+        };
+      } else {
+        return {
+          success: true,
+        };
+      }
     }
   } catch (e) {
     console.log(e);

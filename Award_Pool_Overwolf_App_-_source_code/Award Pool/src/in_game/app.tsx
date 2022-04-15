@@ -3,34 +3,43 @@ import { render } from "react-dom";
 import emitter from "./emitter";
 import storage from "./storage";
 import { getGameNameById } from "../consts";
-import { getChallangesList } from "../utils/api";
 import { getProgressByChallange } from "../utils/number";
 
 const App = () => {
   const [challengeList, setChallengeList] = useState([]);
   const [gameId, setGameId] = useState(storage.getData().gameId);
-  const [userId, setUserId] = useState(storage.getData().userId);
 
   useEffect(() => {
-    async function updateChallangeList() {
-      const { userId, gameId } = await storage.waitForUserIdAndGameId();
-      const challengesList = await getChallangesList(userId, gameId);
-      setChallengeList(challengesList);
+    function updateChallangeList(list) {
+      if (challengeList.length > 0 && list.length > 0) {
+        const newChallenges = [...list, ...challengeList];
+        const ids = [];
+        const newData = newChallenges.reduce((accumulator, challenge) => {
+          if (ids.includes(challenge.id) === false) {
+            ids.push(challenge.id);
+            accumulator.push(challenge);
+          }
+          return accumulator;
+        }, []);
+        setChallengeList(newData);
+      } else {
+        setChallengeList(list);
+      }
     }
     emitter.on("challenges-update", updateChallangeList);
-    updateChallangeList();
     return () =>
       emitter.removeListener("challenges-update", updateChallangeList);
-  }, []);
+  }, [setChallengeList, challengeList]);
 
   useEffect(() => {
-    async function setUserIdAndGameId() {
-      const { userId, gameId } = await storage.waitForUserIdAndGameId();
-      setUserId(userId);
-      setGameId(gameId);
+    function updateGame(key, data) {
+      if (key === "gameId") {
+        setGameId(data);
+      }
     }
-    setUserIdAndGameId();
-  }, []);
+    emitter.on("storage-update-data", updateGame);
+    return () => emitter.removeListener("storage-update-data", updateGame);
+  }, [setGameId]);
 
   const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
 
