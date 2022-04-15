@@ -25,17 +25,9 @@ export const postEventList = async (data) => {
       data
     );
     if (response.status === 200 && response.data.ok === true) {
-      if (response.data.stas != null) {
-        console.log("Test 3");
-        return {
-          success: true,
-          stas: response.data.stas,
-        };
-      } else {
-        return {
-          success: true,
-        };
-      }
+      return {
+        success: true,
+      };
     }
   } catch (e) {
     console.log(e);
@@ -51,12 +43,15 @@ export const getChallangesList = async (userId, gameId) => {
       `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
     );
     console.log("getChallangesList response", response);
+
     if (
       response.status === 200 &&
+      response.data.ok === true &&
       response.data.stas != null &&
-      response.data.ok === true
+      Array.isArray(response.data.stas) &&
+      response.data.stas.length > 0
     ) {
-      return [response.data.stas];
+      return response.data.stas;
     }
   } catch (e) {
     console.log(e);

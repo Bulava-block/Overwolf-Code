@@ -51,14 +51,9 @@ class BackgroundStorage extends MasterStorage {
             eventname: Math.floor(Date.now() / 1000), //"game_ended",
             eventdata: events,
           });
-          if (
-            postEventListResponse.success === true &&
-            postEventListResponse.stas != null
-          ) {
+          if (postEventListResponse.success === true) {
             console.log("Does this happen?");
-            this.eventEmitter.emit("challenges-update", [
-              postEventListResponse.stas,
-            ]);
+            this.eventEmitter.emit("challenges-update");
           }
 
           storage.clearEvents();
