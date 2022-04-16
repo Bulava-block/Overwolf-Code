@@ -26,7 +26,6 @@ export const postEventList = async (data) => {
     );
     if (response.status === 200 && response.data.ok === true) {
       if (response.data.stas != null) {
-        console.log("Test 3");
         return {
           success: true,
           stas: response.data.stas,
@@ -50,8 +49,6 @@ export const getChallangesList = async (userId, gameId) => {
     const response = await awsClient.get(
       `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
     );
-    console.log("getChallangesList response", response);
-
     if (
       response.status === 200 &&
       response.data.ok === true &&

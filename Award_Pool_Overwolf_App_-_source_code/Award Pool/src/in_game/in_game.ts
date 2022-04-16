@@ -38,6 +38,7 @@ class InGame extends AppWindow {
   public async run() {
     const { userId, gameId } = await storage.waitForUserIdAndGameId();
     const challengesList = await getChallangesList(userId, gameId);
+    console.log("ingame challange fetch ran", challengesList);
     if (challengesList.length > 0) {
       eventEmitter.emit("challenges-update", challengesList);
     }

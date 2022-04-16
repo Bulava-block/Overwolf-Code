@@ -1,9 +1,16 @@
-import React, { Fragment, useEffect, useState, useMemo } from "react";
+import React, {
+  Fragment,
+  useEffect,
+  useCallback,
+  useState,
+  useMemo,
+} from "react";
 import { render } from "react-dom";
 import emitter from "./emitter";
 import storage from "./storage";
 import { getGameNameById } from "../consts";
 import { getProgressByChallange } from "../utils/number";
+import { getChallangesList } from "../utils/api";
 
 const App = () => {
   const [challengeList, setChallengeList] = useState([]);
@@ -43,9 +50,20 @@ const App = () => {
 
   const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
 
+  const forceRefresh = useCallback(async () => {
+    console.log("Force refresh");
+    const { userId, gameId } = await storage.waitForUserIdAndGameId();
+    const challengesList = await getChallangesList(userId, gameId);
+    if (challengesList.length > 0) {
+      emitter.emit("challenges-update", challengesList);
+    }
+  }, []);
+
   return (
     <Fragment>
-      <div className="game-title">{gameName}</div>
+      <div className="game-title" onClick={forceRefresh}>
+        {gameName}
+      </div>
       <div id="challenge-panel" className="challenge-panel">
         <h5>Current Challenge</h5>
         {challengeList.map(({ id, label, complete, incomplete, state }, i) => (
