@@ -75,12 +75,12 @@ const App = () => {
               <div
                 className="progress-bar"
                 style={{
-                  width: `${getProgressByChallange(complete, state)}%`,
+                  width: `${incomplete}%`,
                 }}
               ></div>
             </div>
             <div className="progress-value">
-              <label className="earned">{incomplete}</label>
+              <label className="earned">0</label>
               <label className="goal">{complete}</label>
             </div>
           </div>
