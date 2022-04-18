@@ -69,7 +69,8 @@ const App = () => {
         {challengeList.map(({ id, label, complete, incomplete, state }, i) => (
           <div key={`ch-${i}-${id}`} className="challenge-item">
             <p>
-              {label}: {state}
+              {/* {label}: {state} */}
+              {label}: 
             </p>
             <div className="progress-bg">
               <div
@@ -80,7 +81,8 @@ const App = () => {
               ></div>
             </div>
             <div className="progress-value">
-              <label className="earned">0</label>
+            <label className="earned">{state}</label> 
+              {/* <label className="earned">{incomplete}</label> */}
               <label className="goal">{complete}</label>
             </div>
           </div>
