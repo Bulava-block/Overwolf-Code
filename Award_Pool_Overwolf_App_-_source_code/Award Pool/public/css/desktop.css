@@ -1,5 +1,5 @@
 body {
-  background-color: #333333;
+  background-color: #0a002a;
   color: #131313;
   margin: 0px;
   display: flex;
@@ -72,7 +72,7 @@ a {
 }
 
 .desktopBottom {
-  background-color: #464646;
+  background-color: #0a002a;
   width: 100%;
   flex: 1;
   display: flex;
@@ -112,6 +112,7 @@ a {
 
 main div.iframe-panel {
   width: 100%;
+  
 }
 
 main div.iframe-panel iframe {
@@ -130,3 +131,4 @@ div#loading-overlay {
   justify-content: center;
   align-items: center;
 }
+

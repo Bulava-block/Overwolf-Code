@@ -14,18 +14,14 @@
   <!-- -------------------------------- Header ------------------------------- -->
 
   <header id="header" class="app-header">
-    <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1585781768880x326917572137278140%2Ffavicon-dots.png?w=128&h=&auto=compress&dpr=1&fit=max" />
-    <h1>Award Pool</h1>
+   
     <div class="window-controls-group">
       <button class="icon window-control" id="minimizeButton">
         <svg>
           <use xlink:href="/img/header_icons.svg#window-control_minimize" />
         </svg>
       </button>
-      <button class="icon window-control" id="maximizeButton">
-        <svg>
-          <use xlink:href="/img/header_icons.svg#window-control_maximize" />
-        </svg>
+     
       </button>
       <button class="icon window-control window-control-close" id="closeButton">
         <svg>
@@ -36,9 +32,31 @@
   </header>
 
   <!-- --------------------------------- Main -------------------------------- -->
+  <!-- <main>
+    <div id="loading-overlay">
+      <img src="/img/lavaLamp.gif" alt="loading..." />
+    </div>
+    <style> 
+      .awardpool_embed {
+      border-style: solid; border-color: #0a002a; ; 
+       width: 1160px; height: 650px;
+       
+              zoom: 1.5;
+              -moz-transform: scale(.75);
+              -moz-transform-origin: 0 0;
+              -o-transform: scale(.75);
+              -o-transform-origin: 0 0;
+              -webkit-transform: scale(.7);
+              -webkit-transform-origin: 0 0;
+            }
+      </style>
+      <iframe src="https://app.awardpool.com/version-ronald/signup_index_new/login" 
+      name="awardpool_embed" id="awardpool_embed" scrolling="yes" allowfullscreen SameSite="None; Secure" style="" class="awardpool_embed" allow="clipboard-read; clipboard-write"></iframe>
+  </main> -->
   <main>
     <div id="loading-overlay">
-      <img src="/img/loading.gif" alt="loading..." />
+      
+      <img src="/img/lavaLamp.gif" alt="loading..." />
     </div>
     <div class="iframe-panel">
       <iframe src="https://app.awardpool.com/version-ronald/signup_index_new/login" loading="lazy" id="ap_iframe"></iframe>
