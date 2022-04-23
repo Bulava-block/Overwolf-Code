@@ -33,7 +33,6 @@
   display: flex;
   background-color: #0a002a;
   align-items: center;
-  
   z-index: 9999;
 }
 
@@ -49,12 +48,11 @@
 
 .app-header.draggable,
 .app-header.draggable h1 {
-    user-select: none;
-
-    cursor: move;
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
+  user-select: none;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 .app-header img {

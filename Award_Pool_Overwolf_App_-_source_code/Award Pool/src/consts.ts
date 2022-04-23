@@ -24,24 +24,8 @@ const getGameNameById = (gameId: undefined | number) => {
         return "Valorant";
       case 10826:
         return "Rainbow Six Siege";
-        case 10624:
+      case 10624:
         return "Heroes Of The Storm";
-    }
-  }
-  return "";
-};
-
-const getGameIconById = (gameId: undefined | number) => {
-  if (gameId != null) {
-    switch (gameId) {
-      case 21216:
-        return "/img/Apex.png";
-      case 21640:
-        return "/img/Apex.png";
-      case 10826:
-        return "Rainbow Six Siege";
-        case 10624:
-        return "/img/fortniteIcon.png";
     }
   }
   return "";
@@ -233,4 +217,4 @@ const hotkeys = {
   toggle: "showhide",
 };
 
-export { gameIds, interestingFeatures, windowNames, hotkeys, getGameNameById, getGameIconById };
+export { gameIds, interestingFeatures, windowNames, hotkeys, getGameNameById };

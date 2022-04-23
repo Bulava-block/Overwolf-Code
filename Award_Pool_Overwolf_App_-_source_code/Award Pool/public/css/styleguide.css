@@ -1,0 +1,16 @@
+:root {
+  --black: #000000;
+  --gamboge: #e7a707;
+  --log-cabin: #222222;
+  --mine-shaft: #333333;
+  --mountain-mist: #909295;
+  --white: #ffffff;
+  --white-2: #ffffff66;
+
+  --font-size-l: 24px;
+  --font-size-m: 18px;
+  --font-size-s: 16px;
+  --font-size-xl: 60px;
+  --font-size-xs: 14px;
+  --font-size-xxs: 12px;
+}
