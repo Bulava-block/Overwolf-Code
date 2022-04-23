@@ -31,6 +31,22 @@ const getGameNameById = (gameId: undefined | number) => {
   return "";
 };
 
+const getGameIconById = (gameId: undefined | number) => {
+  if (gameId != null) {
+    switch (gameId) {
+      case 21216:
+        return "/img/Apex.png";
+      case 21640:
+        return "/img/Apex.png";
+      case 10826:
+        return "Rainbow Six Siege";
+        case 10624:
+        return "/img/fortniteIcon.png";
+    }
+  }
+  return "";
+};
+
 const interestingFeatures = {
   21216: [
     // Fortnite
@@ -217,4 +233,4 @@ const hotkeys = {
   toggle: "showhide",
 };
 
-export { gameIds, interestingFeatures, windowNames, hotkeys, getGameNameById };
+export { gameIds, interestingFeatures, windowNames, hotkeys, getGameNameById, getGameIconById };

@@ -9,6 +9,7 @@ import { render } from "react-dom";
 import emitter from "./emitter";
 import storage from "./storage";
 import { getGameNameById } from "../consts";
+import { getGameIconById } from "../consts";
 import { getProgressByChallange } from "../utils/number";
 import { getChallangesList } from "../utils/api";
 
@@ -49,6 +50,7 @@ const App = () => {
   }, [setGameId]);
 
   const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
+  const gameIcon = useMemo(() => getGameIconById(gameId), [gameId]);
 
   const forceRefresh = useCallback(async () => {
     console.log("Force refresh");
@@ -63,8 +65,12 @@ const App = () => {
     <Fragment>
       <div className="game-title" onClick={forceRefresh}>
         {gameName}
+        
       </div>
       <div id="challenge-panel" className="challenge-panel">
+        <div>
+          <img src={gameIcon}/>
+        </div>
         <h5>Current Challenge</h5>
         {challengeList.map(({ id, label, complete, incomplete, state }, i) => (
           <div key={`ch-${i}-${id}`} className="challenge-item">
@@ -81,9 +87,9 @@ const App = () => {
               ></div>
             </div>
             <div className="progress-value">
-            <label className="earned">{state}</label> 
+               <label className="earned">{state}</label> 
              
-              <label className="goal">{complete}</label>
+               <label className="goal">{complete}</label>
             </div>
           </div>
         ))}
