@@ -28,16 +28,16 @@
         "transparent": true,
         "override_on_update": true,
         "size": {
-          "width": 1260,
-          "height": 800
+          "width": 1440 ,
+          "height": 1264
         },
         "min_size": {
-          "width": 1260,
-          "height": 800
+          "width": 1440 ,
+          "height": 1264
         },
         "max_size": {
-          "width": 1260,
-          "height": 800
+          "width": 1440 ,
+          "height": 1264
         }
       },
       "in_game": {

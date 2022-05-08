@@ -115,11 +115,11 @@ class BackgroundController {
 
     if (await this.isSupportedGameRunning()) {
       this.subscribeToGameEvents();
-      this._windows[windowNames.desktop].close();
+      // this._windows[windowNames.desktop].close();
       this._windows[windowNames.inGame].restore();
     } else {
       this.unsubscribeFromGameEvents();
-      this._windows[windowNames.desktop].restore();
+      // this._windows[windowNames.desktop].restore();
       this._windows[windowNames.inGame].close();
     }
   }
@@ -131,11 +131,11 @@ class BackgroundController {
 
     if (info.isRunning) {
       this.subscribeToGameEvents();
-      this._windows[windowNames.desktop].close();
+      // this._windows[windowNames.desktop].close();
       this._windows[windowNames.inGame].restore();
     } else {
       this.unsubscribeFromGameEvents();
-      this._windows[windowNames.desktop].restore();
+      // this._windows[windowNames.desktop].restore();
       this._windows[windowNames.inGame].close();
     }
   }
