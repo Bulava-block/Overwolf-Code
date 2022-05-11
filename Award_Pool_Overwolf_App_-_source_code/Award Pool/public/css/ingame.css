@@ -258,6 +258,14 @@ button.logCopy:hover {
   color: #ffffff;
 }
 
+.in-game .app-header .window-control-close {
+  display: none;
+}
+
+.in-game .app-header .window-control-minimize {
+  margin-right: 10px;
+}
+
 .in-game .app-header {
   height: 40px;
   background-color: #333;

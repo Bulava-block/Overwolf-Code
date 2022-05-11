@@ -148,6 +148,16 @@ class BackgroundController {
   private onNewEvents(data) {
     console.info("onNewEvents", data);
     onNewEvents(data);
+    if (
+      data != null &&
+      data.events != null &&
+      data.events.length > 0 &&
+      data.events.some(({ name }) =>
+        ["match_start", "matchStart", "match_end", "matchEnd"].includes(name)
+      )
+    ) {
+      this._windows[windowNames.inGame].restore();
+    }
   }
 
   // Implementing the Singleton design pattern
