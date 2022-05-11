@@ -38,18 +38,6 @@ const App = () => {
       emitter.removeListener("challenges-update", updateChallangeList);
   }, [setChallengeList, challengeList]);
 
-  useEffect(() => {
-    function updateGame(key, data) {
-      if (key === "gameId") {
-        setGameId(data);
-      }
-    }
-    emitter.on("storage-update-data", updateGame);
-    return () => emitter.removeListener("storage-update-data", updateGame);
-  }, [setGameId]);
-
-  const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
-
   const forceRefresh = useCallback(async () => {
     console.log("Force refresh");
     const { userId, gameId } = await storage.waitForUserIdAndGameId();
@@ -58,6 +46,22 @@ const App = () => {
       emitter.emit("challenges-update", challengesList);
     }
   }, []);
+
+  useEffect(() => {
+    function updateGame(key, data) {
+      if (key === "gameId") {
+        setGameId(data);
+      }
+    }
+    emitter.on("storage-update-data", updateGame);
+    emitter.on("challenges-force-fetch", forceRefresh);
+    return () => {
+      emitter.removeListener("storage-update-data", updateGame);
+      emitter.removeListener("challenges-force-fetch", forceRefresh);
+    };
+  }, [setGameId, forceRefresh]);
+
+  const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
 
   return (
     <Fragment>

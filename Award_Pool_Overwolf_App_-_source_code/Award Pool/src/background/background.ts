@@ -156,6 +156,7 @@ class BackgroundController {
         ["match_start", "matchStart", "match_end", "matchEnd"].includes(name)
       )
     ) {
+      window.eventEmitter.emit("challenges-force-fetch");
       this._windows[windowNames.inGame].restore();
     }
   }
