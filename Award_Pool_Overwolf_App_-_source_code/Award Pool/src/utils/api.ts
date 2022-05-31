@@ -11,8 +11,8 @@ const interceptor = aws4Interceptor(
     signQuery: true,
   },
   {
-    accessKeyId: "AKIAYPDA4V42B7XSN64B",
-    secretAccessKey: "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",
+    accessKeyId: "AKIAYPDA4V42G5JJZRFS",
+    secretAccessKey: "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",
   }
 );
 
@@ -21,7 +21,7 @@ awsClient.interceptors.request.use(interceptor);
 export const postEventList = async (data) => {
   try {
     const response = await awsClient.post(
-      `https://sandbox.overwolf.awardpool.co/v1/events`,
+      `https://prod.overwolf.awardpool.co/v1/events`,
       data
     );
     if (response.status === 200 && response.data.ok === true) {
@@ -47,7 +47,7 @@ export const postEventList = async (data) => {
 export const getChallangesList = async (userId, gameId) => {
   try {
     const response = await awsClient.get(
-      `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
+      `https://prod.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
     );
     if (
       response.status === 200 &&
