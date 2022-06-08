@@ -11,8 +11,13 @@ const interceptor = aws4Interceptor(
     signQuery: true,
   },
   {
-    accessKeyId: "AKIAYPDA4V42G5JJZRFS",
-    secretAccessKey: "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",
+    // live version
+    // accessKeyId: "AKIAYPDA4V42G5JJZRFS",
+    // secretAccessKey: "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",
+     
+    // testing version
+    accessKeyId: "AKIAYPDA4V42B7XSN64B",
+    secretAccessKey: "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",
   }
 );
 
@@ -43,12 +48,14 @@ export const postEventList = async (data) => {
     success: false,
   };
 };
-
+// https://prod.overwolf.awardpool.co/v1/events
 export const getChallangesList = async (userId, gameId) => {
   try {
     const response = await awsClient.get(
-      `https://prod.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
+     
+      `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
     );
+    
     if (
       response.status === 200 &&
       response.data.ok === true &&
@@ -58,6 +65,7 @@ export const getChallangesList = async (userId, gameId) => {
     ) {
       return response.data.stas;
     }
+    console.log("TESTING IFRAME!", response);
   } catch (e) {
     console.log(e);
   }
