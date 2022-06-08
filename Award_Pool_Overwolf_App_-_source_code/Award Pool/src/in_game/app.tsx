@@ -83,6 +83,16 @@ const App = () => {
           )
         )}
       </div>
+      <div className="ad-container">
+        <iframe
+          width="400"
+          height="300"
+          src="https://www.youtube.com/embed/rdtc0dv-XaE?&autoplay=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="autoplay"
+        ></iframe>
+      </div>
     </Fragment>
   );
 };
