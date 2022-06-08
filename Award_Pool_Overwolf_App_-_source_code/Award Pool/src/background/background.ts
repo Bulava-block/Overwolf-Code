@@ -142,22 +142,44 @@ class BackgroundController {
 
   private onInfoUpdates(data) {
     console.info("onInfoUpdates", data);
+    if (
+      data != null &&
+      data.game_info != null &&
+      data.game_info.phase != null &&
+      data.game_info.phase === "loading_screen"
+    ) {
+      this.openInGameWindow();
+    }
     onInfoUpdates(data);
+  }
+
+  private openInGameWindow() {
+    window.eventEmitter.emit("challenges-force-fetch");
+    this._windows[windowNames.inGame].restore();
+  }
+
+  private closeInGameWindow() {
+    this._windows[windowNames.inGame].close();
   }
 
   private onNewEvents(data) {
     console.info("onNewEvents", data);
     onNewEvents(data);
-    if (
-      data != null &&
-      data.events != null &&
-      data.events.length > 0 &&
-      data.events.some(({ name }) =>
-        ["match_start", "matchStart", "match_end", "matchEnd"].includes(name)
-      )
-    ) {
-      window.eventEmitter.emit("challenges-force-fetch");
-      this._windows[windowNames.inGame].restore();
+    if (data != null && data.events != null && data.events.length > 0) {
+      const shouldInGameWindowOpen = data.events.some(({ name }) =>
+        ["match_end", "matchEnd"].includes(name)
+      );
+      if (shouldInGameWindowOpen) {
+        this.openInGameWindow();
+        return;
+      }
+      const shouldInGameWindowClose = data.events.some(({ name }) =>
+        ["match_start", "matchStart"].includes(name)
+      );
+      if (shouldInGameWindowClose) {
+        this.closeInGameWindow();
+        return;
+      }
     }
   }
 
