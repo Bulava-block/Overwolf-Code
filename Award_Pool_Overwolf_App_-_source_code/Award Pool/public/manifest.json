@@ -101,7 +101,8 @@
         "https://www.facebook.com",
         "https://www.reddit.com",
         "https://app.awardpool.com",
-        "https://prod.overwolf.awardpool.co"
+        "https://prod.overwolf.awardpool.co",
+        "https://sandbox.overwolf.awardpool.co"
       ]
     },
     "force_browser": "user",

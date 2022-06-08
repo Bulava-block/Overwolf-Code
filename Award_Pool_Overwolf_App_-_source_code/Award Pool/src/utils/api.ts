@@ -26,7 +26,7 @@ awsClient.interceptors.request.use(interceptor);
 export const postEventList = async (data) => {
   try {
     const response = await awsClient.post(
-      `https://prod.overwolf.awardpool.co/v1/events`,
+      `https://sandbox.overwolf.awardpool.co/v1/events`,
       data
     );
     if (response.status === 200 && response.data.ok === true) {
