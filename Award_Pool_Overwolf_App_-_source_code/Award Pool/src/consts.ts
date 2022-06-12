@@ -1,5 +1,5 @@
 const gameIds = [
-  21216, // Fortnite
+  21216, // Fortnite    "GameLaunch" - , 21626, 10798, 7314, 10624, 21640, 10826, 7764, 5426, 8032
   21626, // Call of Duty War Zone
   10798, // Rocket League
   // Among Us

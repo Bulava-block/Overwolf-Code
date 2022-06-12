@@ -150,6 +150,14 @@ class BackgroundController {
     ) {
       this.openInGameWindow();
     }
+    if (
+      data != null &&
+      data.game_info != null &&
+      data.game_info.phase != null
+    ) {
+      console.log("Phase", data.game_info.phase);
+      
+    }
     onInfoUpdates(data);
   }
 
