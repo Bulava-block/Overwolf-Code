@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useState,
   useMemo,
+  useRef,
 } from "react";
 import { render } from "react-dom";
 import emitter from "./emitter";
@@ -11,8 +12,10 @@ import storage from "./storage";
 import { getGameNameById } from "../consts";
 import { getChallangesList } from "../utils/api";
 import ChallengeItem from "./challengeItem";
+import { insertAd } from "../utils";
 
 const App = () => {
+  const adRef = useRef(null);
   const [challengeList, setChallengeList] = useState([]);
   const [gameId, setGameId] = useState(storage.getData().gameId);
 
@@ -63,6 +66,17 @@ const App = () => {
 
   const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
 
+  useEffect(() => {
+    if (adRef != null && adRef.current != null) {
+      // Testing ads
+      localStorage.owAdsForceAdUnit = "Ad_test";
+      console.info("[AD] - Ad container ready to use.");
+      insertAd(adRef.current);
+    } else {
+      console.error("[AD] - No container to use for ads.");
+    }
+  }, []);
+
   return (
     <Fragment>
       <div className="game-title" onClick={forceRefresh}>
@@ -83,16 +97,7 @@ const App = () => {
           )
         )}
       </div>
-      <div className="ad-container">
-        <iframe
-          width="400"
-          height="300"
-          src="https://www.youtube.com/embed/rdtc0dv-XaE?&autoplay=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="autoplay"
-        ></iframe>
-      </div>
+      <div ref={adRef} className="ad-container"></div>
     </Fragment>
   );
 };

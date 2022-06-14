@@ -12,7 +12,7 @@
     "icon_gray": "icons/IconMouseNormal.png",
     "launcher_icon": "icons/launcher_icon.ico"
   },
-  "permissions": ["Hotkeys", "GameInfo"],
+  "permissions": ["Hotkeys", "GameInfo", "Extensions", "Streaming", "Profile"],
   "data": {
     "start_window": "background",
     "windows": {
@@ -69,9 +69,7 @@
       {
         "event": "GameLaunch",
         "event_data": {
-          "game_ids": [
-            21216
-          ]
+          "game_ids": [21216]
         },
         "start_minimized": false
       }
@@ -88,6 +86,7 @@
     },
     "externally_connectable": {
       "matches": [
+        "https://content.overwolf.com",
         "http://*.youtube.com",
         "http://*.overwolf.com",
         "https://*.overwolf.com",

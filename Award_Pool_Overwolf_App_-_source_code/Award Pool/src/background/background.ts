@@ -156,7 +156,6 @@ class BackgroundController {
       data.game_info.phase != null
     ) {
       console.log("Phase", data.game_info.phase);
-      
     }
     onInfoUpdates(data);
   }
