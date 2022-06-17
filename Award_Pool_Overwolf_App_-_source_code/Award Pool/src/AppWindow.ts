@@ -8,24 +8,40 @@ export class AppWindow {
   protected maximized: boolean = false;
 
   constructor(windowName) {
-    this.mainWindow = new OWWindow('background');
+    this.mainWindow = new OWWindow("background");
     this.currWindow = new OWWindow(windowName);
 
-    const closeButton = document.getElementById('closeButton');
-    const maximizeButton = document.getElementById('maximizeButton');
-    const minimizeButton = document.getElementById('minimizeButton');
+    const closeButton = document.getElementById("closeButton");
+    const maximizeButton = document.getElementById("maximizeButton");
+    const minimizeButton = document.getElementById("minimizeButton");
+    const discordButton = document.getElementById("discordButton");
+    const bugButton = document.getElementById("bugButton");
 
-    const header = document.getElementById('header');
+    const header = document.getElementById("header");
 
     this.setDrag(header);
 
-    closeButton.addEventListener('click', () => {
+    closeButton.addEventListener("click", () => {
       this.mainWindow.close();
     });
 
-    minimizeButton.addEventListener('click', () => {
+    minimizeButton.addEventListener("click", () => {
       this.currWindow.minimize();
     });
+
+    if (discordButton != null) {
+      discordButton.addEventListener("click", () =>
+        overwolf.utils.openUrlInDefaultBrowser("https://discord.gg/awardpool")
+      );
+    }
+
+    if (bugButton != null) {
+      bugButton.addEventListener("click", () =>
+        overwolf.utils.openUrlInDefaultBrowser(
+          "https://forms.monday.com/forms/1df6676ba6ea9f851a9eb927c2bcb4c8?r=use1"
+        )
+      );
+    }
 
     // maximizeButton.addEventListener('click', () => {
     //   if (!this.maximized) {
