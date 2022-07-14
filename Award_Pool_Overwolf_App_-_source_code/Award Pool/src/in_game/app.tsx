@@ -13,6 +13,7 @@ import { getGameNameById } from "../consts";
 import { getChallangesList } from "../utils/api";
 import ChallengeItem from "./challengeItem";
 import { insertAd } from "../utils";
+import GameService from "./gameService";
 
 const App = () => {
   const adRef = useRef(null);
@@ -80,7 +81,8 @@ const App = () => {
   return (
     <Fragment>
       <div className="game-title" onClick={forceRefresh}>
-        {gameName}
+        <h3>{gameName}</h3>
+        <GameService gameId={gameId} />
       </div>
       <div id="challenge-panel" className="challenge-panel">
         {challengeList.map(

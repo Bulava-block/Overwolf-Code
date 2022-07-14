@@ -17,11 +17,6 @@ main {
 }
 
 main div.game-title {
-  color: var(--white);
-  font-family: var(--font-family-quicksand);
-  font-size: var(--font-size-l);
-  font-style: normal;
-  font-weight: 700;
   background: rgb(238, 50, 128);
   background: linear-gradient(
     90deg,
@@ -29,8 +24,17 @@ main div.game-title {
     rgba(124, 109, 232, 0.43) 100%
   );
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: 25px 15px;
+}
+
+main div.game-title h3 {
+  color: var(--white);
+  font-family: var(--font-family-quicksand);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 700;
+  margin: 0 0 10px;
 }
 
 main div.challenge-panel {
@@ -314,6 +318,38 @@ button.logCopy:hover {
   color: var(--white);
   font-style: normal;
   text-decoration: underline;
+}
+
+.in-game .widget.game-service {
+  display: flex;
+  flex-direction: row;
+}
+
+.in-game .widget.game-service .service {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.in-game .widget.game-service .service.up {
+  background-color: #3bb447;
+}
+
+.in-game .widget.game-service .service.down {
+  background-color: #000;
+}
+
+.in-game .widget.game-service p {
+  display: flex;
+  color: var(--white);
+  font-family: var(--font-family-quicksand);
+  font-size: var(--font-size-xs);
+  font-style: normal;
+  font-weight: 500;
+  margin: 0;
+  align-items: center;
 }
 
 #root {

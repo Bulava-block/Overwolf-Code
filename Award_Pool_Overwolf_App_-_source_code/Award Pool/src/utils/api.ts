@@ -14,7 +14,7 @@ const interceptor = aws4Interceptor(
     // live version
     // accessKeyId: "AKIAYPDA4V42G5JJZRFS",
     // secretAccessKey: "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",
-     
+
     // testing version
     accessKeyId: "AKIAYPDA4V42B7XSN64B",
     secretAccessKey: "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",
@@ -52,10 +52,9 @@ export const postEventList = async (data) => {
 export const getChallangesList = async (userId, gameId) => {
   try {
     const response = await awsClient.get(
-     
       `https://sandbox.overwolf.awardpool.co/v1/challenges/${gameId}/${userId}`
     );
-    
+
     if (
       response.status === 200 &&
       response.data.ok === true &&
@@ -70,4 +69,26 @@ export const getChallangesList = async (userId, gameId) => {
     console.log(e);
   }
   return [];
+};
+
+export const checkOverwolfServiceByGameId = async (
+  gameId: number
+): Promise<boolean> => {
+  try {
+    const response = await awsClient.get(
+      `https://game-events-status.overwolf.com/${gameId}_prod.json`
+    );
+    if (
+      response.status === 200 &&
+      response.data.state === 1 &&
+      response.data.features != null &&
+      Array.isArray(response.data.features) &&
+      response.data.features.length > 0
+    ) {
+      return response.data.features.every(({ state }) => state === 1);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
 };
