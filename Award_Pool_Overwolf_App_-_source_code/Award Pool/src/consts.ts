@@ -8,7 +8,7 @@ const gameIds = [
   10826, // Rainbow Six Siege
   7764, // CSGO
   5426, // League Of Legends
-  10624,
+  // 10624,
   //5426,   // Team Fight Tactics
   // NBA2k
   // Roblox
@@ -24,8 +24,8 @@ const getGameNameById = (gameId: undefined | number) => {
         return "Valorant";
       case 10826:
         return "Rainbow Six Siege";
-      case 10624:
-        return "Heroes Of The Storm";
+      // case 10624:
+      //   return "Heroes Of The Storm";
     }
   }
   return "";
@@ -119,16 +119,16 @@ const interestingFeatures = {
     "death",
   ],
 
-  10624: [
-    // Heroes of the storm
-    "me",
-    "game_info",
-    "match_info",
-    "gep_internal",
-    "kill",
-    "roster",
-    "death",
-  ],
+  // 10624: [
+  //   // Heroes of the storm
+  //   "me",
+  //   "game_info",
+  //   "match_info",
+  //   "gep_internal",
+  //   "kill",
+  //   "roster",
+  //   "death",
+  // ],
 
   10826: [
     // Rainbow Six Siege

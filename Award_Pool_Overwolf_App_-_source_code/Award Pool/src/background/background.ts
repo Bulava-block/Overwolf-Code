@@ -180,8 +180,9 @@ class BackgroundController {
         this.openInGameWindow();
         return;
       }
+      //, "matchStart"
       const shouldInGameWindowClose = data.events.some(({ name }) =>
-        ["match_start", "matchStart"].includes(name)
+        ["match_start"].includes(name)
       );
       if (shouldInGameWindowClose) {
         this.closeInGameWindow();
