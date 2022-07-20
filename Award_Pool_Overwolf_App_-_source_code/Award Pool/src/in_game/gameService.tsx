@@ -18,8 +18,8 @@ const GameService = ({ gameId }: { gameId: undefined | number }) => {
       <p>
         <span className={`service ${isWorking ? "up" : "down"}`}></span>
         {isWorking
-          ? "Overwolf service is fully functioning."
-          : "Overwolf service is not functioning."}
+          ? "Overwolf service for this game is online."
+          : "Overwolf service for this game is unavailable."}
       </p>
     </div>
   );
