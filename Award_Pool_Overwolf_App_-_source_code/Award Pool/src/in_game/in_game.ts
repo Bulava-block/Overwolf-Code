@@ -4,6 +4,7 @@ import { hotkeys, windowNames } from "../consts";
 import WindowState = overwolf.windows.WindowStateEx;
 import "./app";
 import { getChallangesList } from "../utils/api";
+import { handleInternetConnectionChange } from "../utils/internetconnection";
 import eventEmitter from "./emitter";
 import storage from "./storage";
 
@@ -25,6 +26,7 @@ class InGame extends AppWindow {
     overwolf.settings.hotkeys.onChanged.addListener((e) => {
       this.setToggleHotkeyText();
     });
+    handleInternetConnectionChange(eventEmitter);
   }
 
   public static instance() {

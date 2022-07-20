@@ -2,6 +2,7 @@ import { AppWindow } from "../AppWindow";
 import { windowNames } from "../consts";
 import eventEmitter from "../in_game/emitter";
 import { getCredentialsByEncryptedMessage } from "../utils/index";
+import { handleInternetConnectionChange } from "../utils/internetconnection";
 import Timer from "./timer";
 import storage from "./storage";
 
@@ -37,6 +38,7 @@ class Desktop extends AppWindow {
     });
 
     this.addWindowStateChangeListener();
+    handleInternetConnectionChange(eventEmitter);
   }
 
   private async addWindowStateChangeListener() {

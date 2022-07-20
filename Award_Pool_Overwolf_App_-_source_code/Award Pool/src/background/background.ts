@@ -10,6 +10,7 @@ import {
   OWWindow,
 } from "@overwolf/overwolf-api-ts";
 import RunningGameInfo = overwolf.games.RunningGameInfo;
+import { addInternetConnectionStateChangeListener } from "../utils/internetconnection";
 import eventEmitter from "../utils/events";
 import onInfoUpdates from "./infoUpdates";
 import onNewEvents from "./newEvents";
@@ -66,6 +67,8 @@ class BackgroundController {
     overwolf.extensions.onAppLaunchTriggered.addListener((e) =>
       this.onAppLaunchTriggered(e)
     );
+
+    addInternetConnectionStateChangeListener(window.eventEmitter);
   }
 
   // Identify whether the RunningGameInfo object we have references a supported game

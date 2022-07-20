@@ -16,9 +16,6 @@ export class AppWindow {
     const minimizeButton = document.getElementById("minimizeButton");
     const discordButton = document.getElementById("discordButton");
     const bugButton = document.getElementById("bugButton");
-    // DELETE THIS
-    const stasButton = document.getElementById("stasButton");
-    
 
     const header = document.getElementById("header");
 
@@ -27,10 +24,7 @@ export class AppWindow {
     closeButton.addEventListener("click", () => {
       this.mainWindow.close();
     });
-       // DELETE THIS
-    stasButton.addEventListener("click", () => {
-      alert("Check your internet connection");
-    });
+
     minimizeButton.addEventListener("click", () => {
       this.currWindow.minimize();
     });

@@ -11,6 +11,7 @@ type Data = {
   userId: undefined | string;
   gameId: undefined | number;
   message: undefined | number;
+  isInternetConnection: boolean;
 };
 
 class Storage {
@@ -22,6 +23,7 @@ class Storage {
       userId: undefined,
       gameId: undefined,
       message: undefined,
+      isInternetConnection: window.navigator.onLine,
     };
     this.eventEmitter = eventEmitter;
     this.listenToUpdateData();
