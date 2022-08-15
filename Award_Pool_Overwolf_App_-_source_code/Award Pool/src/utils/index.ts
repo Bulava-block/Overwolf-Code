@@ -6,26 +6,6 @@ declare global {
   }
 }
 
-const isAdReady = (): Promise<void> =>
-  new Promise((resolve) => {
-    const waitForAdTimeout = setInterval(() => {
-      if (window.OwAd != null) {
-        console.info("[AD] - Ad library ready.");
-        resolve();
-        clearInterval(waitForAdTimeout);
-      }
-    }, 1000);
-  });
-
-const insertAd = async (reference) => {
-  console.info("[AD] - Inser ad flow started.");
-  await isAdReady();
-  const owAd = new window.OwAd(reference, {
-    size: { width: 400, height: 300 },
-  });
-  console.info("[AD] - owAd instance created: ", owAd);
-};
-
 function deleteAllCookies() {
   var cookies = document.cookie.split(";");
 
@@ -53,4 +33,4 @@ const getCredentialsByEncryptedMessage = async (message) => {
   };
 };
 
-export { insertAd, deleteAllCookies, getCredentialsByEncryptedMessage };
+export { deleteAllCookies, getCredentialsByEncryptedMessage };

@@ -1,0 +1,10 @@
+.widget.ad {
+  display: flex;
+  flex-basis: 300px;
+  flex-direction: column;
+  margin: 0 20px 20px 20px;
+  background-color: var(--black);
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}

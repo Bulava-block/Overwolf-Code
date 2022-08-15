@@ -9,16 +9,18 @@ import React, {
 import { render } from "react-dom";
 import emitter from "./emitter";
 import storage from "./storage";
-import { getGameNameById } from "../consts";
+import { getGameNameById, windowNames } from "../consts";
 import { getChallangesList } from "../utils/api";
 import ChallengeItem from "./challengeItem";
-import { insertAd } from "../utils";
+/* import { insertAd } from "../utils"; */
 import GameService from "./gameService";
+import Ad from "./Ad";
 
 const App = () => {
-  const adRef = useRef(null);
+  /*  const adRef = useRef(null); */
   const [challengeList, setChallengeList] = useState([]);
   const [gameId, setGameId] = useState(storage.getData().gameId);
+  const [isLoadingAd, setIsLoadingAd] = useState(true);
 
   useEffect(() => {
     function updateChallangeList(list) {
@@ -65,18 +67,12 @@ const App = () => {
     };
   }, [setGameId, forceRefresh]);
 
-  const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
-
   useEffect(() => {
-    if (adRef != null && adRef.current != null) {
-      // Testing ads
-      localStorage.owAdsForceAdUnit = "Ad_test";
-      console.info("[AD] - Ad container ready to use.");
-      insertAd(adRef.current);
-    } else {
-      console.error("[AD] - No container to use for ads.");
-    }
-  }, []);
+    emitter.on("update-is-loading-ad", setIsLoadingAd);
+    return () => emitter.off("update-is-loading-ad", setIsLoadingAd);
+  }, [setIsLoadingAd]);
+
+  const gameName = useMemo(() => getGameNameById(gameId), [gameId]);
 
   return (
     <Fragment>
@@ -99,7 +95,12 @@ const App = () => {
           )
         )}
       </div>
-      <div ref={adRef} className="ad-container"></div>
+      <Ad
+        isLoadingAd={isLoadingAd}
+        isLoadingWindowName={false}
+        windowName={windowNames.inGame}
+        isSubscribed={false}
+      />
     </Fragment>
   );
 };
