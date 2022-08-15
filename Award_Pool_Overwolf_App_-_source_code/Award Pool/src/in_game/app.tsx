@@ -4,7 +4,6 @@ import React, {
   useCallback,
   useState,
   useMemo,
-  useRef,
 } from "react";
 import { render } from "react-dom";
 import emitter from "./emitter";
@@ -12,12 +11,10 @@ import storage from "./storage";
 import { getGameNameById, windowNames } from "../consts";
 import { getChallangesList } from "../utils/api";
 import ChallengeItem from "./challengeItem";
-/* import { insertAd } from "../utils"; */
 import GameService from "./gameService";
 import Ad from "./Ad";
 
 const App = () => {
-  /*  const adRef = useRef(null); */
   const [challengeList, setChallengeList] = useState([]);
   const [gameId, setGameId] = useState(storage.getData().gameId);
   const [isLoadingAd, setIsLoadingAd] = useState(true);
@@ -99,7 +96,6 @@ const App = () => {
         isLoadingAd={isLoadingAd}
         isLoadingWindowName={false}
         windowName={windowNames.inGame}
-        isSubscribed={false}
       />
     </Fragment>
   );

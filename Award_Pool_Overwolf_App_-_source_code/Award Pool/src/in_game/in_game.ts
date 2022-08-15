@@ -1,7 +1,7 @@
 import { AppWindow } from "../AppWindow";
 import { OWGames, OWHotkeys } from "@overwolf/overwolf-api-ts";
 import { hotkeys, windowNames } from "../consts";
-import WindowState = overwolf.windows.WindowStateEx;
+import WindowState = overwolf.windows.enums.WindowStateEx;
 import "./app";
 import { getChallangesList } from "../utils/api";
 import { handleInternetConnectionChange } from "../utils/internetconnection";

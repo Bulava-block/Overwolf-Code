@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import useGameInFocus from "./useGameInFocus";
 import useWindowsStates from "./useWindowsStates";
-import windowNames from "../windowNames";
 import { windowNames } from "../../consts";
 import eventEmitter from "../emitter";
 
-localStorage.owAdsForceAdUnit = "Ad_test";
+//localStorage.owAdsForceAdUnit = "Ad_test";
 
 const kAdWindowsPriority = [windowNames.inGame];
 
@@ -17,8 +16,20 @@ function usePrevious(value) {
   return ref.current;
 }
 
-const Ad = ({ windowName, width = 400, height = 300, enabled = true }) => {
-  const ingameWindow = windowName === windowNames.IN_GAME;
+type Props = {
+  windowName: string;
+  width: undefined | number;
+  height: undefined | number;
+  enabled: undefined | boolean;
+};
+
+const Ad = ({
+  windowName,
+  width = 400,
+  height = 300,
+  enabled = true,
+}: Props) => {
+  const ingameWindow = windowName === windowNames.inGame;
   const gameInFocus = useGameInFocus(false);
   const windowStates = useWindowsStates(null);
 
@@ -82,11 +93,10 @@ const Ad = ({ windowName, width = 400, height = 300, enabled = true }) => {
   }
 
   async function getWindowIsVisible() {
-    const state = await new Promise((resolve) => {
-      window.overwolf.windows.isWindowVisibleToUser(resolve);
-    });
-
-    //console.info(`getWindowIsVisible: ${JSON.stringify(state)}`);
+    const state: overwolf.windows.IsWindowVisibleToUserResult =
+      await new Promise((resolve) => {
+        window.overwolf.windows.isWindowVisibleToUser(resolve);
+      });
     return state && state.success && state.visible !== "hidden";
   }
 

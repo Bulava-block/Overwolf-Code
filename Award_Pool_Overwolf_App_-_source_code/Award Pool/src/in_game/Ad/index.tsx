@@ -1,11 +1,14 @@
-import "./ad.css";
+import React from "react";
 import Ad from "./Ad";
 
 const AdContainer = ({
   isLoadingAd,
   isLoadingWindowName,
   windowName,
-  isSubscribed,
+}: {
+  isLoadingAd: boolean;
+  isLoadingWindowName: boolean;
+  windowName: string;
 }) => (
   <div className="widget ad">
     {/* isLoadingAd && <Fragment>Placeholder for loading ads.</Fragment> */}
@@ -13,12 +16,7 @@ const AdContainer = ({
      <Fragment>Placeholder when no ads appearing.</Fragment>
     ) */}
     {isLoadingWindowName === false && (
-      <Ad
-        windowName={windowName}
-        width={400}
-        height={300}
-        enabled={isSubscribed}
-      />
+      <Ad windowName={windowName} width={400} height={300} enabled={true} />
     )}
   </div>
 );

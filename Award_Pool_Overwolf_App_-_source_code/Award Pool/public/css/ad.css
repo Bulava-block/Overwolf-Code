@@ -8,3 +8,10 @@
   justify-content: center;
   border-radius: 10px;
 }
+
+.widget.ad .ow-ad {
+  display: block;
+  width: 400px;
+  height: 300px;
+  z-index: 2;
+}
